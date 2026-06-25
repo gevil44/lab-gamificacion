@@ -1,0 +1,211 @@
+<!doctype html>
+<html lang="es">
+<head>
+ <meta charset="utf-8" />
+ <meta name="viewport" content="width=device-width, initial-scale=1" />
+ <title>Laboratorio Digital Interactivo de Ecuaciones Diferenciales</title><meta name="description" content="Recurso educativo digital multimedia interactivo para la asignatura Ecuaciones Diferenciales." />
+ <script>
+  window.MathJax = { tex: {inlineMath: [['\\(','\\)'], ['$', '$']]}, svg: {fontCache: 'global'} };
+ </script>
+ <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+ <style>
+  :root{
+   --bg:#08111f; --bg2:#0e1a2e; --panel:#111c32cc; --panel2:#16233e;
+   --text:#ecf5ff; --muted:#9db3d0; --cyan:#38d5ff; --pink:#ff4fd8;
+   --green:#4dffb5; --yellow:#ffcf5a; --red:#ff5c7c; --line:#243958;
+   --card:#0f1a2f; --shadow:0 18px 50px #0008; --radius:22px;
+  }
+  *{box-sizing:border-box} html{scroll-behavior:smooth}
+  body{margin:0;font-family:Inter,Segoe UI,Roboto,Arial,sans-serif;background:
+   radial-gradient(circle at 10% 5%,#293b7a 0 10%,transparent 25%),
+   radial-gradient(circle at 90% 15%,#5d1c7d 0 9%,transparent 23%),
+   radial-gradient(circle at 50% 100%,#06465e 0 13%,transparent 28%),var(--bg);color:var(--text);}
+  body:before{content:"";position:fixed;inset:0;background-image:linear-gradient(#ffffff08 1px,transparent 1px),linear-gradient(90deg,#ffffff08 1px,transparent 1px);background-size:46px 46px;mask-image:linear-gradient(to bottom,#000 0,#0008 60%,transparent 100%);pointer-events:none}
+  a{color:var(--cyan)}
+  .app{display:grid;grid-template-columns:310px 1fr;min-height:100vh}
+  aside{position:sticky;top:0;height:100vh;padding:22px;background:#06101fe8;border-right:1px solid #ffffff14;backdrop-filter: blur(12px);overflow:auto}
+  .brand{display:flex;gap:12px;align-items:center;margin-bottom:18px}.logo{width:52px;height:52px;border-radius:16px;background:linear-gradient(135deg,var(--cyan),var(--pink));display:grid;place-items:center;font-weight:900;color:#06101f;box-shadow:0 0 35px #38d5ff55}.brand h1{font-size:16px;margin:0;line-height:1.15}.brand p{margin:3px 0 0;color:var(--muted);font-size:12px}
+  .progressbox{background:linear-gradient(180deg,#12213bcc,#0c1729cc);border:1px solid #ffffff14;border-radius:18px;padding:14px;margin:18px 0;box-shadow:var(--shadow)}
+  .progressbar{height:10px;background:#ffffff12;border-radius:999px;overflow:hidden;margin-top:10px}.progressbar div{height:100%;width:0;background:linear-gradient(90deg,var(--cyan),var(--green));transition:.4s}
+  nav a{display:flex;gap:10px;align-items:center;color:#dbe8ff;text-decoration:none;padding:11px 12px;border-radius:14px;margin:5px 0;border:1px solid transparent}.nava:hover,.active{background:#ffffff0f;border-color:#ffffff18}nav small{color:var(--muted);display:block;margin-left:auto}
+  main{padding:32px 42px 90px;max-width:1280px}.hero{min-height:540px;display:grid;grid-template-columns:1.2fr .8fr;gap:32px;align-items:center}.tag{display:inline-flex;gap:8px;align-items:center;border:1px solid #ffffff20;background:#ffffff0c;color:#cfeaff;border-radius:999px;padding:8px 12px;font-size:13px}.hero h2{font-size:clamp(42px,6vw,82px);line-height:.95;margin:18px 0 14px;letter-spacing:-2px}.gradient{background:linear-gradient(90deg,var(--cyan),var(--pink),var(--yellow));-webkit-background-clip:text;background-clip:text;color:transparent}.lead{font-size:19px;line-height:1.6;color:#cbdaf0;max-width:780px}.heroCard{position:relative;border-radius:34px;min-height:440px;overflow:hidden;background:linear-gradient(150deg,#132849,#0b1526);border:1px solid #ffffff1d;box-shadow:var(--shadow)}
+  .heroCard svg{position:absolute;inset:0;width:100%;height:100%}.chips{display:flex;flex-wrap:wrap;gap:10px;margin-top:24px}.chip{padding:9px 12px;border:1px solid #ffffff1c;border-radius:999px;background:#ffffff0b;color:#dbe8ff;font-size:13px}.actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:28px}.btn{border:0;border-radius:15px;padding:13px 16px;background:linear-gradient(90deg,var(--cyan),#61ffcf);color:#06101f;font-weight:800;cursor:pointer;text-decoration:none;box-shadow:0 12px 30px #38d5ff25}.btn.secondary{background:#ffffff10;color:#e9f6ff;border:1px solid #ffffff18;box-shadow:none}.btn.pink{background:linear-gradient(90deg,var(--pink),#ffb25a)}
+  section{margin:36px 0 26px;padding:28px;border:1px solid #ffffff14;background:var(--panel);border-radius:var(--radius);box-shadow:var(--shadow);scroll-margin-top:20px}.sectionTitle{display:flex;gap:14px;align-items:flex-start;margin-bottom:18px}.num{min-width:44px;height:44px;border-radius:14px;background:linear-gradient(135deg,var(--cyan),var(--pink));display:grid;place-items:center;font-weight:900;color:#08111f}.sectionTitle h3{font-size:32px;margin:0}.sectionTitle p{margin:5px 0 0;color:var(--muted)}
+  .grid{display:grid;gap:18px}.g2{grid-template-columns:repeat(2,minmax(0,1fr))}.g3{grid-template-columns:repeat(3,minmax(0,1fr))}.card{background:linear-gradient(180deg,#12213b,#0c1729);border:1px solid #ffffff14;border-radius:18px;padding:18px;position:relative;overflow:hidden}.card:after{content:"";position:absolute;right:-40px;top:-40px;width:120px;height:120px;background:radial-gradient(circle,#38d5ff22,transparent 70%)}.card h4{margin:0 0 8px;font-size:20px}.card p,.card li{color:#c7d7ee;line-height:1.55}.muted{color:var(--muted)}.eq{font-family:Georgia,serif;font-size:20px;background:#06101f8c;border:1px solid #ffffff12;border-radius:14px;padding:12px;display:block;margin:12px 0;color:#f6fbff;overflow:auto}.pill{display:inline-block;font-size:12px;padding:6px 9px;border-radius:999px;background:#ffffff10;color:#dbe8ff;border:1px solid #ffffff14}.ok{color:var(--green)}.warn{color:var(--yellow)}.bad{color:var(--red)}
+  .timeline{display:grid;grid-template-columns:repeat(5,1fr);gap:12px}.node{padding:16px;border-radius:16px;background:#ffffff0b;border:1px solid #ffffff18;min-height:142px}.node b{color:var(--cyan)}
+  details{background:#ffffff08;border:1px solid #ffffff12;border-radius:16px;padding:14px;margin:10px 0}summary{cursor:pointer;font-weight:800;color:#eaf7ff}.steps li{margin:8px 0}.quiz{border-left:4px solid var(--cyan)}.option{display:block;width:100%;text-align:left;margin:9px 0;padding:12px;border-radius:14px;border:1px solid #ffffff18;background:#ffffff0b;color:var(--text);cursor:pointer}.option:hover{background:#ffffff16}.option.correct{border-color:#4dffb5;background:#4dffb51b}.option.wrong{border-color:#ff5c7c;background:#ff5c7c1b}.feedback{min-height:28px;color:#cfe6ff;font-weight:700;margin-top:8px}.score{font-size:38px;font-weight:900;color:var(--green)}
+  .wizard .question{font-size:22px;font-weight:900;margin-bottom:12px}.wizard button{margin:6px}.path{padding:14px;border:1px dashed #ffffff30;border-radius:16px;color:#c7d7ee;background:#ffffff08}.flashcards{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}.flash{height:165px;perspective:800px;cursor:pointer}.flashinner{position:relative;width:100%;height:100%;transition:transform .6s;transform-style:preserve-3d}.flash.flipped .flashinner{transform:rotateY(180deg)}.front,.back{position:absolute;inset:0;border-radius:18px;border:1px solid #ffffff18;backface-visibility:hidden;padding:18px;display:grid;place-items:center;text-align:center;background:linear-gradient(145deg,#142747,#0c182c)}.back{transform:rotateY(180deg);background:linear-gradient(145deg,#2b1646,#0c182c)}
+  .print{margin-top:20px;border-top:1px solid #ffffff16;padding-top:18px}.mini{font-size:12px;color:var(--muted)}.kbd{font-family:Consolas,monospace;background:#0006;padding:3px 7px;border-radius:7px;border:1px solid #ffffff18}.rubric td,.rubric th{border:1px solid #ffffff1c;padding:10px;vertical-align:top}.rubric{border-collapse:collapse;width:100%;font-size:14px}.rubric th{background:#ffffff12;color:#eaf7ff}
+  footer{color:#9db3d0;text-align:center;margin:40px auto 0;max-width:850px;font-size:13px}
+  @media(max-width:980px){.app{grid-template-columns:1fr}aside{position:relative;height:auto}.hero{grid-template-columns:1fr}.g2,.g3,.timeline,.flashcards{grid-template-columns:1fr}main{padding:22px}.hero h2{font-size:44px}}
+  @media print{aside,.actions,.btn{display:none}.app{display:block}body{background:white;color:black}section,.card{box-shadow:none;background:white;color:black;border-color:#ddd}.muted,.card p,.card li{color:#333}.eq{background:#f7f7f7;color:#111}.heroCard{display:none}main{padding:0}.hero{min-height:auto}}
+ </style>
+</head>
+<body>
+<div class="app">
+ <aside>
+  <div class="brand"><div class="logo">ED</div><div><h1>Laboratorio Digital Interactivo</h1><p>Ecuaciones Diferenciales</p></div></div>
+  <div class="progressbox">
+   <div><b>Avance del recurso</b></div>
+   <div class="mini"><span id="progressText">0</span>% explorado · <span id="scoreText">0</span> puntos</div>
+   <div class="progressbar"><div id="bar"></div></div>
+  </div>
+  <nav id="nav">
+   <a href="#inicio" class="active">🎮 Inicio <small>00</small></a>
+   <a href="#ruta">🧭 Ruta de aprendizaje <small>01</small></a>
+   <a href="#clasificacion">🧩 Clasificación de ED <small>02</small></a>
+   <a href="#separables">🔀 Variables separables <small>03</small></a>
+   <a href="#lineales">📐 EDO lineales <small>04</small></a>
+   <a href="#homogeneas">⚙️ Homogéneas 2º orden <small>05</small></a>
+   <a href="#nohomogeneas">🧪 No homogéneas <small>06</small></a>
+   <a href="#cauchy">🌀 Cauchy-Euler <small>07</small></a>
+   <a href="#laplace">⚡ Laplace <small>08</small></a>
+   <a href="#selector">🤖 Selector de método <small>09</small></a>
+   <a href="#evaluacion">🏁 Autoevaluación <small>10</small></a>
+  </nav>
+ </aside>
+ <main>
+  <header class="hero" id="inicio" data-track="inicio">
+   <div>
+    <span class="tag">Laboratorio interactivo · HTML · Estudio autónomo</span>
+    <h2><span class="gradient">Ecuaciones Diferenciales</span><br/>sin modo pánico</h2>
+    <p class="lead">Laboratorio multimedia para comprender, practicar y decidir métodos de solución de EDO: clasificación, variables separables, lineales, homogéneas, no homogéneas, Cauchy-Euler y transformada de Laplace.</p>
+    <div class="chips">
+     <span class="chip">Asignatura: Ecuaciones Diferenciales</span><span class="chip">Carrera: Ingeniería en Sistemas Computacionales</span><span class="chip">Modalidad: Recurso interactivo</span><span class="chip">Nivel: Superior · TecNM</span>
+    </div>
+    <div class="actions"><a class="btn" href="#ruta">Iniciar recorrido</a><button class="btn secondary" onclick="window.print()">Imprimir / Guardar en PDF</button><button class="btn secondary" onclick="resetProgress()">Reiniciar avance</button></div>
+   </div>
+   <div class="heroCard" aria-label="Visualización generativa de EDO">
+    <svg viewBox="0 0 600 520" preserveAspectRatio="none">
+     <defs><linearGradient id="g" x1="0" x2="1"><stop offset="0" stop-color="#38d5ff"/><stop offset="1" stop-color="#ff4fd8"/></linearGradient><filter id="glow"><feGaussianBlur stdDeviation="4" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs>
+     <rect width="600" height="520" fill="#0b1526"/>
+     <g opacity=".16" stroke="#fff"><path d="M0 430 C120 330 190 500 310 345 S505 230 600 290"/><path d="M0 380 C130 280 220 400 350 270 S520 170 600 220"/><path d="M0 320 C90 260 210 280 320 190 S495 145 600 90"/></g>
+     <g filter="url(#glow)" fill="none" stroke="url(#g)" stroke-width="6"><path d="M20 420 C130 300 210 455 330 305 S495 190 580 245"/><path d="M20 365 C145 250 220 385 360 245 S515 120 585 165"/></g>
+     <g fill="#38d5ff" opacity=".9"><circle cx="95" cy="354" r="5"/><circle cx="188" cy="392" r="5"/><circle cx="328" cy="306" r="5"/><circle cx="447" cy="218" r="5"/></g>
+     <text x="36" y="68" fill="#ecf5ff" font-size="30" font-weight="800">dy/dx = f(x,y)</text>
+     <text x="36" y="108" fill="#9db3d0" font-size="18">familias de soluciones · condiciones iniciales · métodos</text>
+     <g transform="translate(42,150)"><rect width="210" height="70" rx="18" fill="#ffffff10" stroke="#ffffff25"/><text x="20" y="31" fill="#4dffb5" font-size="18" font-weight="700">1. Clasifica</text><text x="20" y="55" fill="#cbdaf0" font-size="14">tipo · orden · linealidad</text></g>
+     <g transform="translate(320,335)"><rect width="220" height="82" rx="18" fill="#ffffff10" stroke="#ffffff25"/><text x="20" y="32" fill="#ffcf5a" font-size="18" font-weight="700">2. Elige método</text><text x="20" y="57" fill="#cbdaf0" font-size="14">separable · lineal · Laplace</text></g>
+    </svg>
+   </div>
+  </header>
+
+  <section id="ruta" data-track="ruta">
+   <div class="sectionTitle"><div class="num">01</div><div><h3>Ruta de aprendizaje</h3><p>Primero se identifica el tipo de ecuación; luego se selecciona el método. En EDO, aventarse directo a integrar sin clasificar es como entrar a un boss sin guardar partida.</p></div></div>
+   <div class="timeline">
+    <div class="node"><b>1. Observar</b><p>Identifica variables, derivadas y forma general.</p></div>
+    <div class="node"><b>2. Clasificar</b><p>Tipo, orden, grado y linealidad.</p></div>
+    <div class="node"><b>3. Elegir método</b><p>Separable, lineal, coeficientes constantes, Cauchy-Euler o Laplace.</p></div>
+    <div class="node"><b>4. Resolver</b><p>Aplica pasos ordenados y conserva constantes.</p></div>
+    <div class="node"><b>5. Verificar</b><p>Sustituye la solución en la ecuación original.</p></div>
+   </div>
+  </section>
+
+  <section id="clasificacion" data-track="clasificacion">
+   <div class="sectionTitle"><div class="num">02</div><div><h3>Clasificación de una ecuación diferencial</h3><p>La clasificación permite saber qué herramienta matemática usar.</p></div></div>
+   <div class="grid g3">
+    <div class="card"><h4>Por tipo</h4><p><b>EDO:</b> derivadas respecto a una sola variable independiente.</p><span class="eq">\(\frac{dy}{dx}+2y=x\)</span><p><b>EDP:</b> derivadas parciales respecto a dos o más variables.</p></div>
+    <div class="card"><h4>Por orden</h4><p>El orden corresponde a la derivada de mayor orden presente en la ecuación.</p><span class="eq">\(y''+3y'+2y=0\)</span><p>Es de segundo orden porque aparece \(y''\).</p></div>
+    <div class="card"><h4>Por linealidad</h4><p>Es lineal si la función desconocida y sus derivadas aparecen a la primera potencia y no se multiplican entre sí.</p><span class="eq">\(a_n(x)y^{(n)}+...+a_1(x)y'+a_0(x)y=g(x)\)</span></div>
+   </div>
+   <details><summary>Ejemplos rápidos</summary><ul><li>\(y'+xy=3\): lineal de primer orden.</li><li>\(y'=xy^2\): no lineal por \(y^2\).</li><li>\(y''+4y=0\): lineal homogénea de segundo orden.</li><li>\(y''+4y=\sin x\): lineal no homogénea.</li></ul></details>
+   <div class="card quiz" data-question="q1"><h4>Pregunta interactiva</h4><p>¿Cuál ecuación es lineal?</p><button class="option" data-correct="false">\(y'+y^2=x\)</button><button class="option" data-correct="true">\(y'+3y=e^x\)</button><button class="option" data-correct="false">\(yy'=x\)</button><div class="feedback"></div></div>
+  </section>
+
+  <section id="separables" data-track="separables">
+   <div class="sectionTitle"><div class="num">03</div><div><h3>Variables separables</h3><p>Una EDO de primer orden es separable cuando puede escribirse con todas las \(y\) de un lado y todas las \(x\) del otro.</p></div></div>
+   <div class="grid g2"><div class="card"><h4>Forma general</h4><span class="eq">\(\frac{dy}{dx}=g(x)h(y)\)</span><p>Se transforma en:</p><span class="eq">\(\frac{1}{h(y)}dy=g(x)dx\)</span></div><div class="card"><h4>Proceso</h4><ol class="steps"><li>Separar variables.</li><li>Integrar ambos lados.</li><li>Agregar constante de integración.</li><li>Despejar si es posible.</li><li>Verificar sustituyendo.</li></ol></div></div>
+   <details open><summary>Ejemplo guiado</summary><p>Resolver \(\frac{dy}{dx}=xy\).</p><ol class="steps"><li>Separar: \(\frac{1}{y}dy=x dx\)</li><li>Integrar: \(\int \frac{1}{y}dy=\int x dx\)</li><li>Resultado: \(\ln|y|=\frac{x^2}{2}+C\)</li><li>Despeje: \(y=Ce^{x^2/2}\)</li></ol></details>
+   <div class="card quiz" data-question="q2"><h4>Pregunta interactiva</h4><p>La ecuación \(\frac{dy}{dx}=x(1+y)\) se puede separar como:</p><button class="option" data-correct="true">\(\frac{dy}{1+y}=x dx\)</button><button class="option" data-correct="false">\((1+y)dy=x dx\)</button><button class="option" data-correct="false">\(dy=x(1+y)\)</button><div class="feedback"></div></div>
+  </section>
+
+  <section id="lineales" data-track="lineales">
+   <div class="sectionTitle"><div class="num">04</div><div><h3>Ecuaciones diferenciales lineales de primer orden</h3><p>Cuando no es separable, puede ser lineal. Aquí aparece el famoso factor integrante, que no muerde, solo exige orden.</p></div></div>
+   <div class="grid g2"><div class="card"><h4>Forma estándar</h4><span class="eq">\(\frac{dy}{dx}+P(x)y=Q(x)\)</span><p>Primero se debe dejar el coeficiente de \(y'\) igual a 1.</p></div><div class="card"><h4>Factor integrante</h4><span class="eq">\(\mu(x)=e^{\int P(x)dx}\)</span><p>Después:</p><span class="eq">\(y\mu(x)=\int \mu(x)Q(x)dx+C\)</span></div></div>
+   <details><summary>Ejemplo guiado</summary><p>Resolver \(y'+2y=4\).</p><ol class="steps"><li>\(P(x)=2\), \(Q(x)=4\)</li><li>\(\mu=e^{\int2dx}=e^{2x}\)</li><li>\(y e^{2x}=\int4e^{2x}dx+C=2e^{2x}+C\)</li><li>\(y=2+Ce^{-2x}\)</li></ol></details>
+   <div class="card quiz" data-question="q3"><h4>Pregunta interactiva</h4><p>Para \(y'-3y=x\), el factor integrante es:</p><button class="option" data-correct="false">\(e^{3x}\)</button><button class="option" data-correct="true">\(e^{-3x}\)</button><button class="option" data-correct="false">\(x^{-3}\)</button><div class="feedback"></div></div>
+  </section>
+
+  <section id="homogeneas" data-track="homogeneas">
+   <div class="sectionTitle"><div class="num">05</div><div><h3>Lineales homogéneas con coeficientes constantes</h3><p>Se resuelven proponiendo una solución exponencial y construyendo la ecuación auxiliar.</p></div></div>
+   <div class="grid g3"><div class="card"><h4>Forma</h4><span class="eq">\(ay''+by'+cy=0\)</span><span class="eq">\(ar^2+br+c=0\)</span></div><div class="card"><h4>Raíces reales distintas</h4><span class="eq">\(y=C_1e^{r_1x}+C_2e^{r_2x}\)</span></div><div class="card"><h4>Raíces repetidas</h4><span class="eq">\(y=C_1e^{rx}+C_2xe^{rx}\)</span></div></div>
+   <div class="card"><h4>Raíces complejas conjugadas</h4><p>Si \(r=\alpha\pm \beta i\), entonces:</p><span class="eq">\(y=e^{\alpha x}(C_1\cos\beta x+C_2\sin\beta x)\)</span></div>
+   <details><summary>Ejemplo guiado</summary><p>Resolver \(y''-3y'+2y=0\).</p><ol class="steps"><li>Ecuación auxiliar: \(r^2-3r+2=0\)</li><li>Factorizar: \((r-1)(r-2)=0\)</li><li>Raíces: \(r_1=1\), \(r_2=2\)</li><li>Solución: \(y=C_1e^x+C_2e^{2x}\)</li></ol></details>
+   <div class="card quiz" data-question="q4"><h4>Pregunta interactiva</h4><p>Si la ecuación auxiliar tiene raíz repetida \(r=5\), la solución es:</p><button class="option" data-correct="false">\(C_1e^{5x}+C_2e^{-5x}\)</button><button class="option" data-correct="true">\(C_1e^{5x}+C_2xe^{5x}\)</button><button class="option" data-correct="false">\(e^{5x}(C_1\cos x+C_2\sin x)\)</button><div class="feedback"></div></div>
+  </section>
+
+  <section id="nohomogeneas" data-track="nohomogeneas">
+   <div class="sectionTitle"><div class="num">06</div><div><h3>Ecuaciones lineales no homogéneas</h3><p>La solución general combina función complementaria y solución particular.</p></div></div>
+   <div class="grid g2"><div class="card"><h4>Estructura</h4><span class="eq">\(ay''+by'+cy=g(x)\)</span><span class="eq">\(y=y_c+y_p\)</span><p>\(y_c\) resuelve la ecuación homogénea asociada. \(y_p\) responde al término \(g(x)\).</p></div><div class="card"><h4>Coeficientes indeterminados</h4><p>Se propone una forma para \(y_p\) según \(g(x)\).</p><ul><li>Polinomio → polinomio general.</li><li>\(e^{ax}\) → \(Ae^{ax}\).</li><li>\(\sin bx\), \(\cos bx\) → combinación seno/coseno.</li></ul></div></div>
+   <details><summary>Tabla rápida de propuesta para \(y_p\)</summary><table class="rubric"><tr><th>Si \(g(x)\) contiene...</th><th>Proponer...</th></tr><tr><td>Constante \(k\)</td><td>\(A\)</td></tr><tr><td>Polinomio de grado 1</td><td>\(Ax+B\)</td></tr><tr><td>Polinomio de grado 2</td><td>\(Ax^2+Bx+C\)</td></tr><tr><td>\(e^{ax}\)</td><td>\(Ae^{ax}\)</td></tr><tr><td>\(\sin bx\) o \(\cos bx\)</td><td>\(A\cos bx+B\sin bx\)</td></tr></table></details>
+   <div class="card quiz" data-question="q5"><h4>Pregunta interactiva</h4><p>Para \(y''+y=x^2\), una forma adecuada para \(y_p\) es:</p><button class="option" data-correct="false">\(Ae^x\)</button><button class="option" data-correct="true">\(Ax^2+Bx+C\)</button><button class="option" data-correct="false">\(A\cos x+B\sin x\)</button><div class="feedback"></div></div>
+  </section>
+
+  <section id="cauchy" data-track="cauchy">
+   <div class="sectionTitle"><div class="num">07</div><div><h3>Ecuaciones de Cauchy-Euler</h3><p>Se reconocen porque los coeficientes son potencias de \(x\) acordes al orden de la derivada.</p></div></div>
+   <div class="grid g2"><div class="card"><h4>Forma típica</h4><span class="eq">\(ax^2y''+bxy'+cy=0\)</span><p>Se propone:</p><span class="eq">\(y=x^m\)</span></div><div class="card"><h4>Ecuación auxiliar</h4><span class="eq">\(am(m-1)+bm+c=0\)</span><p>Después se interpretan las raíces igual que en otros casos: distintas, repetidas o complejas.</p></div></div>
+   <details><summary>Soluciones según raíces</summary><ul><li>Raíces distintas: \(y=C_1x^{m_1}+C_2x^{m_2}\)</li><li>Raíz repetida: \(y=C_1x^m+C_2x^m\ln x\)</li><li>Complejas \(m=\alpha\pm\beta i\): \(y=x^\alpha(C_1\cos(\beta\ln x)+C_2\sin(\beta\ln x))\)</li></ul></details>
+   <div class="card quiz" data-question="q6"><h4>Pregunta interactiva</h4><p>La ecuación \(x^2y''+3xy'+y=0\) es Cauchy-Euler porque:</p><button class="option" data-correct="true">Los coeficientes acompañan a las derivadas como potencias de \(x\).</button><button class="option" data-correct="false">Tiene coeficientes constantes.</button><button class="option" data-correct="false">Siempre se resuelve con Laplace.</button><div class="feedback"></div></div>
+  </section>
+
+  <section id="laplace" data-track="laplace">
+   <div class="sectionTitle"><div class="num">08</div><div><h3>Transformada de Laplace</h3><p>Convierte una ecuación diferencial en una ecuación algebraica en el dominio de \(s\). Es como cambiar de mapa porque el nivel estaba demasiado enredado.</p></div></div>
+   <div class="grid g2"><div class="card"><h4>Definición</h4><span class="eq">\(\mathcal{L}\{f(t)\}=F(s)=\int_0^\infty e^{-st}f(t)dt\)</span><p>Existe cuando la integral converge.</p></div><div class="card"><h4>Transformadas básicas</h4><ul><li>\(\mathcal{L}\{1\}=\frac{1}{s}\)</li><li>\(\mathcal{L}\{t^n\}=\frac{n!}{s^{n+1}}\)</li><li>\(\mathcal{L}\{e^{at}\}=\frac{1}{s-a}\)</li><li>\(\mathcal{L}\{\sin kt\}=\frac{k}{s^2+k^2}\)</li><li>\(\mathcal{L}\{\cos kt\}=\frac{s}{s^2+k^2}\)</li></ul></div></div>
+   <details><summary>Uso general en EDO con condiciones iniciales</summary><ol class="steps"><li>Aplicar Laplace a ambos lados.</li><li>Sustituir condiciones iniciales.</li><li>Despejar \(Y(s)\).</li><li>Descomponer si es necesario.</li><li>Aplicar transformada inversa.</li></ol></details>
+   <div class="card quiz" data-question="q7"><h4>Pregunta interactiva</h4><p>\(\mathcal{L}\{e^{3t}\}\) es:</p><button class="option" data-correct="true">\(\frac{1}{s-3}\)</button><button class="option" data-correct="false">\(\frac{1}{s+3}\)</button><button class="option" data-correct="false">\(\frac{s}{s^2+9}\)</button><div class="feedback"></div></div>
+  </section>
+
+  <section id="selector" data-track="selector">
+   <div class="sectionTitle"><div class="num">09</div><div><h3>Selector interactivo de método</h3><p>Este apartado funciona como un árbol de decisión: no resuelve la ecuación por ti, sino que te ayuda a elegir qué método conviene usar.</p></div></div>
+   <div class="grid g3" style="margin-bottom:18px">
+    <div class="card"><h4>¿Cómo se usa?</h4><ol class="steps"><li>Elige una ecuación de tus ejercicios.</li><li>Observa su orden, si es lineal y si tiene coeficientes especiales.</li><li>Responde Sí o No en cada pregunta.</li><li>El recurso te manda al módulo que explica el método sugerido.</li></ol></div>
+    <div class="card"><h4>Ejemplo rápido 1</h4><p>Si tienes:</p><span class="eq">\(\frac{dy}{dx}=xy\)</span><p>Es de primer orden y se puede separar. Ruta: <b>Sí → Sí → Variables separables</b>.</p></div>
+    <div class="card"><h4>Ejemplo rápido 2</h4><p>Si tienes:</p><span class="eq">\(y''-3y'+2y=0\)</span><p>No es de primer orden; es lineal de segundo orden homogénea. Ruta: <b>No → Sí → ecuación auxiliar</b>.</p></div>
+   </div>
+   <div class="card wizard"><div class="question" id="wq">¿La ecuación que estás analizando es de primer orden?</div><div id="wbtns"><button class="btn" onclick="wizard('first_yes')">Sí</button><button class="btn secondary" onclick="wizard('first_no')">No</button></div><div class="path" id="wpath">Ruta sugerida: primero identifica el orden de la ecuación. Si aparece solo \(y'\), es de primer orden; si aparece \(y''\), es de segundo orden.</div></div>
+   <div class="grid g3" style="margin-top:18px"><div class="card"><h4>Checklist antes de resolver</h4><ul><li>¿Cuál es la variable independiente?</li><li>¿Cuál es el orden?</li><li>¿Es lineal?</li><li>¿Es homogénea?</li><li>¿Hay condiciones iniciales?</li></ul></div><div class="card"><h4>Error común</h4><p>Confundir “homogénea” de primer orden con “lineal homogénea” de segundo orden. Mismo apellido, distinta familia; como primos que no se hablan.</p></div><div class="card"><h4>Consejo de estudio</h4><p>Antes de resolver, justifica el método que vas a usar. Ese paso mejora mucho la comprensión y evita errores de procedimiento.</p></div></div>
+  </section>
+
+  <section id="evaluacion" data-track="evaluacion">
+   <div class="sectionTitle"><div class="num">10</div><div><h3>Autoevaluación y tarjetas de repaso</h3><p>Da clic en las tarjetas para comprobar conceptos clave. El progreso se guarda en el navegador.</p></div></div>
+   <div class="flashcards">
+    <div class="flash"><div class="flashinner"><div class="front"><b>¿Qué define el orden?</b></div><div class="back">La derivada de mayor orden presente en la ecuación.</div></div></div>
+    <div class="flash"><div class="flashinner"><div class="front"><b>Forma lineal 1er orden</b></div><div class="back">\(y'+P(x)y=Q(x)\)</div></div></div>
+    <div class="flash"><div class="flashinner"><div class="front"><b>Solución no homogénea</b></div><div class="back">\(y=y_c+y_p\)</div></div></div>
+    <div class="flash"><div class="flashinner"><div class="front"><b>Propuesta Cauchy-Euler</b></div><div class="back">\(y=x^m\)</div></div></div>
+   </div>
+   <div class="card" style="margin-top:18px"><h4>Resultado actual</h4><p>Has acumulado <span class="score" id="scoreBig">0</span> puntos en las actividades de opción múltiple.</p><p class="muted">Sugerencia: registra tu avance y anota cuál método te resultó más difícil y por qué.</p></div>
+  </section>
+
+  <footer>Laboratorio interactivo de Ecuaciones Diferenciales. Puede ejecutarse en un navegador moderno. Algunas ecuaciones usan MathJax desde CDN; si no hay internet, el código LaTeX seguirá visible.</footer>
+ </main>
+</div>
+<script>
+const tracked=[...document.querySelectorAll('[data-track]')];
+const seen=new Set(JSON.parse(localStorage.getItem('ed_seen')||'[]'));
+let score=Number(localStorage.getItem('ed_score')||0);
+const answered=new Set(JSON.parse(localStorage.getItem('ed_answered')||'[]'));
+function save(){localStorage.setItem('ed_seen',JSON.stringify([...seen]));localStorage.setItem('ed_score',score);localStorage.setItem('ed_answered',JSON.stringify([...answered]));updateUI();}
+function updateUI(){const pct=Math.round((seen.size/tracked.length)*100);document.getElementById('progressText').textContent=pct;document.getElementById('bar').style.width=pct+'%';document.getElementById('scoreText').textContent=score;document.getElementById('scoreBig').textContent=score;}
+function resetProgress(){localStorage.removeItem('ed_seen');localStorage.removeItem('ed_score');localStorage.removeItem('ed_answered');location.reload();}
+const obs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){seen.add(e.target.dataset.track);save();}})},{threshold:.35});tracked.forEach(s=>obs.observe(s));updateUI();
+document.querySelectorAll('nav a').forEach(a=>a.addEventListener('click',()=>{document.querySelectorAll('nav a').forEach(x=>x.classList.remove('active'));a.classList.add('active')}));
+document.querySelectorAll('.option').forEach(btn=>btn.addEventListener('click',()=>{const card=btn.closest('.quiz');const q=card.dataset.question;if(answered.has(q))return;const ok=btn.dataset.correct==='true';btn.classList.add(ok?'correct':'wrong');if(!ok){card.querySelector('[data-correct="true"]').classList.add('correct')}card.querySelector('.feedback').textContent=ok?'Correcto. Buen ojo matemático.':'No es esa. Revisa la forma y vuelve a clasificar antes de resolver.';if(ok)score+=10;answered.add(q);save();}));
+document.querySelectorAll('.flash').forEach(f=>f.addEventListener('click',()=>f.classList.toggle('flipped')));
+function wizard(step){const q=document.getElementById('wq'), b=document.getElementById('wbtns'), p=document.getElementById('wpath');
+ if(step==='first_yes'){q.textContent='¿Puedes acomodarla como dy/dx = g(x)h(y), separando una parte con x y otra con y?';b.innerHTML='<button class="btn" onclick="wizard(\'sep\')">Sí</button><button class="btn secondary" onclick="wizard(\'lin1\')">No / no estoy seguro</button>';p.textContent='Ruta: como es de primer orden, revisa si puedes separar variables. Ejemplo: dy/dx = x·y se separa como dy/y = x dx.'}
+ if(step==='sep'){q.textContent='Método sugerido: Variables separables';b.innerHTML='<button class="btn" onclick="location.href=\'#separables\'">Ir al módulo</button><button class="btn secondary" onclick="wizard(\'start\')">Reiniciar</button>';p.textContent='Pasos: separa variables → integra ambos lados → agrega constante → despeja si es posible → verifica.'}
+ if(step==='lin1'){q.textContent='Si no se puede separar, ¿puede escribirse como y\' + P(x)y = Q(x)?';b.innerHTML='<button class="btn" onclick="wizard(\'lineal\')">Sí</button><button class="btn secondary" onclick="wizard(\'otro1\')">No</button>';p.textContent='Ruta: si tiene la forma y′ + P(x)y = Q(x), usa factor integrante.'}
+ if(step==='lineal'){q.textContent='Método sugerido: EDO lineal de primer orden';b.innerHTML='<button class="btn" onclick="location.href=\'#lineales\'">Ir al módulo</button><button class="btn secondary" onclick="wizard(\'start\')">Reiniciar</button>';p.textContent='Pasos: forma estándar → factor integrante → integrar → despejar.'}
+ if(step==='otro1'){q.textContent='Puede requerir otro método no incluido o una transformación previa';b.innerHTML='<button class="btn secondary" onclick="wizard(\'start\')">Reiniciar</button>';p.textContent='Sugerencia: revisa exactas, Bernoulli, homogéneas de primer orden u otro método según el programa.'}
+ if(step==='first_no'){q.textContent='¿Es una ecuación lineal de segundo orden con coeficientes constantes?';b.innerHTML='<button class="btn" onclick="wizard(\'hom\')">Sí, y el lado derecho es 0</button><button class="btn secondary" onclick="wizard(\'nohom\')">Sí, pero tiene g(x)</button><button class="btn secondary" onclick="wizard(\'cauchyq\')">No</button>';p.textContent='Ruta: como no es de primer orden, revisa si es lineal de segundo orden. Observa si aparecen y″, y′, y con números constantes.'}
+ if(step==='hom'){q.textContent='Método sugerido: ecuación auxiliar';b.innerHTML='<button class="btn" onclick="location.href=\'#homogeneas\'">Ir al módulo</button><button class="btn secondary" onclick="wizard(\'start\')">Reiniciar</button>';p.textContent='Pasos: forma la ecuación auxiliar ar²+br+c=0 → calcula raíces → construye la solución general.'}
+ if(step==='nohom'){q.textContent='Método sugerido: función complementaria + solución particular';b.innerHTML='<button class="btn" onclick="location.href=\'#nohomogeneas\'">Ir al módulo</button><button class="btn secondary" onclick="location.href=\'#laplace\'">Ver Laplace</button><button class="btn secondary" onclick="wizard(\'start\')">Reiniciar</button>';p.textContent='Usa coeficientes indeterminados si g(x) es polinomio, exponencial, seno o coseno; Laplace si hay condiciones iniciales.'}
+ if(step==='cauchyq'){q.textContent='¿Tiene forma parecida a ax²y″ + bxy′ + cy = g(x)?';b.innerHTML='<button class="btn" onclick="wizard(\'cauchy2\')">Sí</button><button class="btn secondary" onclick="wizard(\'laplaceq\')">No</button>';p.textContent='Ruta: revisa si los coeficientes tienen potencias de x: x² con y″, x con y′ y constante con y.'}
+ if(step==='cauchy2'){q.textContent='Método sugerido: Cauchy-Euler';b.innerHTML='<button class="btn" onclick="location.href=\'#cauchy\'">Ir al módulo</button><button class="btn secondary" onclick="wizard(\'start\')">Reiniciar</button>';p.textContent='Pasos: proponer y=x^m → obtener auxiliar → resolver según raíces.'}
+ if(step==='laplaceq'){q.textContent='¿Tiene condiciones iniciales o funciones por tramos/impulsos?';b.innerHTML='<button class="btn" onclick="location.href=\'#laplace\'">Sí, ver Laplace</button><button class="btn secondary" onclick="wizard(\'otro1\')">No / otro caso</button>';p.textContent='Laplace suele ser útil cuando las condiciones iniciales aparecen desde el inicio.'}
+ if(step==='start'){q.textContent='¿La ecuación que estás analizando es de primer orden?';b.innerHTML='<button class="btn" onclick="wizard(\'first_yes\')">Sí</button><button class="btn secondary" onclick="wizard(\'first_no\')">No</button>';p.textContent='Ruta sugerida: primero identifica el orden de la ecuación. Si aparece solo y′, es de primer orden; si aparece y″, es de segundo orden.'}
+}
+</script>
+</body>
+</html>
